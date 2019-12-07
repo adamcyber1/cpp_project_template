@@ -1,7 +1,7 @@
 @PROJECT_NAME@
 ====================================
 
-This is a short description of the project.
+This is a small tool that will quickly initialize your C++ w/ Cmake project.
 
 **ATTENTION, this software is in the alpha state!**
 
@@ -10,7 +10,7 @@ Any [feedback][mail] (*especially results of testing*) is highly appreciated!
 Features
 ========
 
-Brag about what the project can do...
+Builds a command line executable and your choice of a static/shared library.
 
 
 Examples
@@ -46,7 +46,10 @@ Installation on Linux
 
     $ sudo apt install rename
     $ git clone https://github.com/adamfill28/cpp_project_template
-    $ cd cpp_project_template
+    $
+    $ ./init.sh -n <project name> -u <your name> -e <your email>
+    $
+    $ cd <project name>
     $ 
     $ mkdir build && cd build
     $ cmake ..
