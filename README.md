@@ -13,7 +13,6 @@ Features
 Brag about what the project can do...
 
 
-
 Examples
 =======
 
@@ -36,6 +35,7 @@ Dependencies
 
 - [CMake] build system version 3.13+;
 - C++17 compiler ([GCC] 7.3+)
+- GNU rename utility (for file renaming) //TODO remove this dependancy
 
 Build time settings
 -------------------
@@ -44,6 +44,7 @@ Build time settings
 Installation on Linux
 ---------------------
 
+    $ sudo apt install rename
     $ git clone https://github.com/adamfill28/cpp_project_template
     $ cd cpp_project_template
     $ 
