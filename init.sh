@@ -62,12 +62,13 @@ while read -r line; do
       echo "$line is a file"
     else
       echo "$line is not valid"
-      exit 1
     fi
 
-    #rename -n "s/\@project_name\@/$project_name_lower/" $line
-    #rename -n "s/\@PROJECT_NAME\@/$project_name_upper/" $line
-    #rename -n "s/\@name\@/$name/" $line
-    #rename -n "s/\@email\@/$email/" $line
+    rename -n "s/\@project_name\@/$project_name_lower/" $line
+    rename -n "s/\@PROJECT_NAME\@/$project_name_upper/" $line
+    rename -n "s/\@name\@/$name/" $line
+    rename -n "s/\@email\@/$email/" $line
 
 done <<< "$files"
+
+rm -- "$0"
