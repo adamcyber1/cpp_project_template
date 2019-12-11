@@ -77,7 +77,7 @@ Copyright
 
 copyright info....
 
-[mail]: @EMAIL@
+[mail]: @email@
 
 [CMake]: https://cmake.org/
 [GCC]: https://gcc.gnu.org/
