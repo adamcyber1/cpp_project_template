@@ -64,10 +64,13 @@ while read -r line; do
       echo "$line is not valid"
     fi
 
-    rename "s/\@project_name\@/$project_name_lower/" $line
-    rename "s/\@PROJECT_NAME\@/$project_name_upper/" $line
-    rename "s/\@name\@/$name/" $line
-    rename "s/\@email\@/$email/" $line
+done <<< "$files"
+
+while read -r line; do
+    rename "s/\@project_name\@/$project_name_lower/g" $line
+    rename "s/\@PROJECT_NAME\@/$project_name_upper/g" $line
+    rename "s/\@name\@/$name/g" $line
+    rename "s/\@email\@/$email/g" $line
 
 done <<< "$files"
 
