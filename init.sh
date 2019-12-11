@@ -49,6 +49,7 @@ project_name_upper=${project_name_lower^^}
 
 files=$(find . -name "*" | grep --invert-match git | tr " " "\n")
 
+#MOdify File Contents
 while read -r line; do
     if [[ -d $line ]]; then
       echo "$line is a directory"
@@ -65,11 +66,23 @@ while read -r line; do
 
 done <<< "$files"
  
+#Rename Directories
 while read -r line; do
 
     if [ -d $line ]; then
       new_dir = $(sed -e "s/\@project_name\@/$project_name_lower/g" $line)
       mv $line $new_dir
+    fi
+
+done <<< "$files"
+
+files=$(find . -name "*" | grep --invert-match git | tr " " "\n")
+
+#Rename Files
+while read -r line; do
+
+    if [ -d $line ]; then
+      echo "$line is a directory"
     elif [ -f $line ]
       rename "s/\@project_name\@/$project_name_lower/g" $line
     else
