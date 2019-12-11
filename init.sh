@@ -52,7 +52,6 @@ files=$(find . -name "*" | grep --invert-match git | tr " " "\n")
 while read -r line; do
     if [[ -d $line ]]; then
       echo "$line is a directory"
-
     elif [ -f $line ] && [ $line != "./init.sh" ]; then
       sed -i -e "s/@project_name@/$project_name_lower/g" $line
       sed -i -e "s/@PROJECT_NAME@/$project_name_upper/g" $line
@@ -65,12 +64,17 @@ while read -r line; do
     fi
 
 done <<< "$files"
-
+ 
 while read -r line; do
-    rename "s/\@project_name\@/$project_name_lower/g" $line
-    rename "s/\@PROJECT_NAME\@/$project_name_upper/g" $line
-    rename "s/\@name\@/$name/g" $line
-    rename "s/\@email\@/$email/g" $line
+
+    if [ -d $line ]; then
+      new_dir = $(sed -e "s/\@project_name\@/$project_name_lower/g" $line)
+      mv $line $new_dir
+    elif [ -f $line ]
+      rename "s/\@project_name\@/$project_name_lower/g" $line
+    else
+      echo "$line is not valid"
+    fi
 
 done <<< "$files"
 
