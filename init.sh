@@ -15,7 +15,6 @@ function usage() {
     echo "  -h      display help"
 }
 
-
 # Parse options to the `pip` command
 while getopts ":hn:u:l:e:" opt; do
   case ${opt} in
@@ -48,23 +47,17 @@ fi
 
 project_name_upper=${project_name_lower^^}
 
-#replace instances of @project_name@ with {project_name_lower}
-sed -e "s/@project_name@/$project_name_lower/g"  ./test
-sed -e "s/@PROJECT_NAME@/$project_name_upper/g"  ./test
-sed -e "s/@name@/$name/g"  ./test
-sed -e "s/@email@/$email/g"  ./test
-
 files=$(find . -name "*" | grep --invert-match git | tr " " "\n")
 
 while read -r line; do
     if [[ -d $line ]]; then
       echo "$line is a directory"
 
-    elif [[ -f $line ]]; then
-      sed -e "s/@project_name@/$project_name_lower/g" $line
-      sed -e "s/@PROJECT_NAME@/$project_name_upper/g" $line
-      sed -e "s/@name@/$name/g" $line
-      sed -e "s/@email@/$email/g" $line
+    elif [ -f $line ] && [ $line != "./init.sh" ]; then
+      sed -i -e "s/@project_name@/$project_name_lower/g" $line
+      sed -i -e "s/@PROJECT_NAME@/$project_name_upper/g" $line
+      sed -i -e "s/@name@/$name/g" $line
+      sed -i -e "s/@email@/$email/g" $line
 
       echo "$line is a file"
     else
@@ -72,10 +65,9 @@ while read -r line; do
       exit 1
     fi
 
-    rename -n "s/\@project_name\@/$project_name_lower/" $line
-    rename -n "s/\@PROJECT_NAME\@/$project_name_upper/" $line
-    rename -n "s/\@name\@/$name/" $line
-    rename -n "s/\@email\@/$email/" $line
-
+    #rename -n "s/\@project_name\@/$project_name_lower/" $line
+    #rename -n "s/\@PROJECT_NAME\@/$project_name_upper/" $line
+    #rename -n "s/\@name\@/$name/" $line
+    #rename -n "s/\@email\@/$email/" $line
 
 done <<< "$files"
