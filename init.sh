@@ -1,5 +1,13 @@
 #!/bin/bash
 
+#  CPP_PROJECT_TEMPLATE
+#  
+#  A simple template to get your c++ project up and running in a matter of seconds.
+#
+#  init.sh
+# 
+#  A script that takes your project name, author name, and contact email and initializes the project with these values. 
+
 project_name_lower=""
 project_name_upper=""
 email=""
@@ -70,7 +78,7 @@ done <<< "$files"
 while read -r line; do
 
     if [ -d $line ]; then
-      new_dir = $(sed -e "s/\@project_name\@/$project_name_lower/g" $line)
+      new_dir=$(echo $line | sed -e "s/\@project_name\@/$project_name_lower/g")
       mv $line $new_dir
     fi
 
@@ -83,10 +91,10 @@ while read -r line; do
 
     if [ -d $line ]; then
       echo "$line is a directory"
-    elif [ -f $line ]
+    elif [ -f $line ]; then
       rename "s/\@project_name\@/$project_name_lower/g" $line
     else
-      echo "$line is not valid"
+      echo $line is not valid
     fi
 
 done <<< "$files"
