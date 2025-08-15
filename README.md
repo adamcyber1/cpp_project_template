@@ -1,11 +1,7 @@
 @PROJECT_NAME@
 ====================================
 
-This is a small tool that will quickly initialize your C++ w/ Cmake project.
-
-**ATTENTION, this software is in the alpha state!**
-
-Any [feedback][mail] (*especially results of testing*) is highly appreciated!
+The things that were useful before AI....
 
 Features
 ========
