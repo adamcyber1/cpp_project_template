@@ -1,7 +1,7 @@
 @PROJECT_NAME@
 ====================================
 
-The things that were useful before AI....
+This type of thing was useful to me before AI automated boiler plate. 
 
 Features
 ========
